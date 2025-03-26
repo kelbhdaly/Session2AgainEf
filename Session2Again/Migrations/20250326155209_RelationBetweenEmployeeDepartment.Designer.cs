@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Session2Again.DbContexts;
 
@@ -11,9 +12,11 @@ using Session2Again.DbContexts;
 namespace Session2Again.Migrations
 {
     [DbContext(typeof(Session02Again))]
-    partial class Session2AgainModelSnapshot : ModelSnapshot
+    [Migration("20250326155209_RelationBetweenEmployeeDepartment")]
+    partial class RelationBetweenEmployeeDepartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,12 +50,10 @@ namespace Session2Again.Migrations
                         .HasDefaultValue("HR")
                         .HasColumnName("DeptName");
 
-                    b.Property<int>("ManagerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ManagerId");
+                    b.HasIndex("DeptManagerId")
+                        .IsUnique();
 
                     b.ToTable("Department", "Sales");
                 });
@@ -94,34 +95,9 @@ namespace Session2Again.Migrations
             modelBuilder.Entity("Session2Again.Models.Department", b =>
                 {
                     b.HasOne("Session2Again.Models.Employee", "Manager")
-                        .WithMany()
-                        .HasForeignKey("ManagerId")
+                        .WithOne("DepartmentManage")
+                        .HasForeignKey("Session2Again.Models.Department", "DeptManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("Session2Again.Models.Address", "EmpAddress", b1 =>
-                        {
-                            b1.Property<int>("DepartmentId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Country")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("DepartmentId");
-
-                            b1.ToTable("Department", "Sales");
-
-                            b1.WithOwner()
-                                .HasForeignKey("DepartmentId");
-                        });
-
-                    b.Navigation("EmpAddress")
                         .IsRequired();
 
                     b.Navigation("Manager");
@@ -129,30 +105,7 @@ namespace Session2Again.Migrations
 
             modelBuilder.Entity("Session2Again.Models.Employee", b =>
                 {
-                    b.OwnsOne("Session2Again.Models.Address", "EmpAddress", b1 =>
-                        {
-                            b1.Property<int>("EmployeeId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Country")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("EmployeeId");
-
-                            b1.ToTable("Employees");
-
-                            b1.WithOwner()
-                                .HasForeignKey("EmployeeId");
-                        });
-
-                    b.Navigation("EmpAddress")
-                        .IsRequired();
+                    b.Navigation("DepartmentManage");
                 });
 #pragma warning restore 612, 618
         }

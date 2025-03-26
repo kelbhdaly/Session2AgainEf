@@ -28,5 +28,8 @@ namespace Session2Again.Models
         [Phone]
         [DataType(DataType.PhoneNumber)]
         public required string PhoneNumber { get; set; }
+
+        public Address EmpAddress { get; set; }
+
     }
 }

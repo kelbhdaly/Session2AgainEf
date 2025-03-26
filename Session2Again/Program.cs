@@ -64,7 +64,6 @@ namespace Session2Again
 
             #endregion
 
-
             #region Remove Data From Table in DataBase - Delete
 
             //var emp = session2Again.Employees.FirstOrDefault(E=>E.Id==1);
@@ -80,7 +79,6 @@ namespace Session2Again
             //}
 
             #endregion
-
 
             #region Test
             //Employee employee = new Employee()
@@ -126,6 +124,8 @@ namespace Session2Again
 
             //session2Again.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.
             #endregion
+
+       
         }
     }
 }

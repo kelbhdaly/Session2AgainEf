@@ -21,6 +21,8 @@ namespace Session2Again.ModelConfiguration
                 .IsRequired(false);
 
             builder.Property(E => E.Id).UseIdentityColumn(1,10);
+
+            builder.OwnsOne(E => E.EmpAddress, Address => Address.WithOwner());
         }
     }
 }

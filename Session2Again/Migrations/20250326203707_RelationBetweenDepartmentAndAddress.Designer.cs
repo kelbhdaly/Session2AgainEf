@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Session2Again.DbContexts;
 
@@ -11,9 +12,11 @@ using Session2Again.DbContexts;
 namespace Session2Again.Migrations
 {
     [DbContext(typeof(Session02Again))]
-    partial class Session2AgainModelSnapshot : ModelSnapshot
+    [Migration("20250326203707_RelationBetweenDepartmentAndAddress")]
+    partial class RelationBetweenDepartmentAndAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

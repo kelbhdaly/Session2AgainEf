@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Session2Again.DbContexts;
 
@@ -11,9 +12,11 @@ using Session2Again.DbContexts;
 namespace Session2Again.Migrations
 {
     [DbContext(typeof(Session02Again))]
-    partial class Session2AgainModelSnapshot : ModelSnapshot
+    [Migration("20250326202307_RelationBetweenEmployeeAndAddress")]
+    partial class RelationBetweenEmployeeAndAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,31 +100,6 @@ namespace Session2Again.Migrations
                         .WithMany()
                         .HasForeignKey("ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.OwnsOne("Session2Again.Models.Address", "EmpAddress", b1 =>
-                        {
-                            b1.Property<int>("DepartmentId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Country")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("DepartmentId");
-
-                            b1.ToTable("Department", "Sales");
-
-                            b1.WithOwner()
-                                .HasForeignKey("DepartmentId");
-                        });
-
-                    b.Navigation("EmpAddress")
                         .IsRequired();
 
                     b.Navigation("Manager");

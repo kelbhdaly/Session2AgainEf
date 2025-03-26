@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Session2Again.Models;
 
 namespace Session2Again.ModelConfiguration
 {
@@ -25,20 +25,20 @@ namespace Session2Again.ModelConfiguration
             //D.Property(D => D.DeptId)
             //  .HasDefaultValueSql("NewGuid()");
 
-            D.Property(D => D.Name)
+            D.Property(D => D.DeptName)
             .HasColumnName("DeptName")
             .HasColumnType("varchar")
             .HasMaxLength(20)
             .HasDefaultValue("HR");
 
 
-            D.Property(D => D.Date)
+            D.Property(D => D.DateOfCreation)
             .HasDefaultValueSql("GetDate()")
             .HasAnnotation("DataType", "Data");
             //.HasDefaultValue("GetDate")//Default Value Is Date The First Migration
             //.HasComputedColumnSql("GetDate()");
             D.Ignore(D => D.Serial);
-
+            D.OwnsOne(D => D.EmpAddress, Address => Address.WithOwner());
         }
     }
 }
