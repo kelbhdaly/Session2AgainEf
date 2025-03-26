@@ -80,6 +80,52 @@ namespace Session2Again
             //}
 
             #endregion
+
+
+            #region Test
+            //Employee employee = new Employee()
+            //{
+
+            //    PhoneNumber = "125050",
+            //    Name = "Test",
+            //    Email = "akq@505",
+            //    Age = 25,
+            //    Password = "12Password",
+            //    Salary = 1000000
+            //};
+
+            //session2Again.Employees.Add(employee);
+            //session2Again.Add(employee);
+            //session2Again.Set<Employee>().Add(employee);
+            //session2Again.Entry(employee).State = EntityState.Added;
+            //session2Again.SaveChanges();
+
+            //var emp = session2Again.Employees.FirstOrDefault(E => E.Id == 3);
+            //if (emp != null)
+            //{
+            //    session2Again.Employees.Remove(emp);
+            //    session2Again.Entry(emp).State = EntityState.Deleted;
+            //    session2Again.Remove(emp);
+            //    session2Again.Set<Employee>().Remove(emp);
+            //    session2Again.SaveChanges();
+
+            //}
+
+
+
+            //var emp = session2Again.Employees.FirstOrDefault(E => E.Id == 5);
+            //if (emp != null)
+            //{
+            //    emp.Name = "Ali";
+            //    session2Again.SaveChanges();
+            //}
+
+
+            //var emp = session2Again.Employees.Single(E =>E.Id ==2);
+            //Console.WriteLine(emp.Name);
+
+            //session2Again.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.
+            #endregion
         }
     }
 }
