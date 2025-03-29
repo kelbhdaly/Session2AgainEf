@@ -46,6 +46,22 @@ namespace Session2Again.DbContexts
             //    .HasOne<Department>()
             //    .WithOne()
             //    .HasForeignKey<Department>(D => D.DeptManagerId);
+
+
+
+
+            //modelBuilder.Entity<Employee>()
+            //    .HasOne<Department>()
+            //    .WithMany(D => D.Employees)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    ;
+      
+
+            modelBuilder.Entity<Department>()
+                .HasMany(D=>D.Employees)
+                .WithOne(E=>E.EmployeeDepartment)
+
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }

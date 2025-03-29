@@ -28,8 +28,11 @@ namespace Session2Again.Models
         [Phone]
         [DataType(DataType.PhoneNumber)]
         public required string PhoneNumber { get; set; }
-
         public Address EmpAddress { get; set; }
+        [ForeignKey(nameof(EmployeeDepartment))]
+        public int EmployeeId { get; set; }
+        //[InverseProperty(nameof(Department.Employees))]
+        public string EmployeeDepartment { get; set; } = null!;
 
     }
 }

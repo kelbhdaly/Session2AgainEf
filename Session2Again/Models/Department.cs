@@ -23,6 +23,8 @@ namespace Session2Again.Models
 
         public Employee Manager { get; set; } = null!;
         public Address EmpAddress { get; set; }
+        //[InverseProperty(nameof(Employee.EmployeeDepartment))]
+        public ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
 
     }
 }

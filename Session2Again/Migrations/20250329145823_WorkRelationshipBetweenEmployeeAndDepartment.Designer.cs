@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Session2Again.DbContexts;
 
@@ -11,9 +12,11 @@ using Session2Again.DbContexts;
 namespace Session2Again.Migrations
 {
     [DbContext(typeof(Session02Again))]
-    partial class Session2AgainModelSnapshot : ModelSnapshot
+    [Migration("20250329145823_WorkRelationshipBetweenEmployeeAndDepartment")]
+    partial class WorkRelationshipBetweenEmployeeAndDepartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace Session2Again.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -143,9 +146,7 @@ namespace Session2Again.Migrations
                 {
                     b.HasOne("Session2Again.Models.Department", null)
                         .WithMany("Employees")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("DepartmentId");
 
                     b.OwnsOne("Session2Again.Models.Address", "EmpAddress", b1 =>
                         {
